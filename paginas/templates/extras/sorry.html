@@ -1,0 +1,17 @@
+{% extends "../extras/otro.html" %}
+
+{%block title%} Error de Comunicación {%endblock%}
+
+{% block content%}
+ 
+
+<main class="sorry">
+    <h1>Lo Siento</h1>
+    {% load static %}
+
+    <img src="{% static 'img/tenor.gif' %}" alt="Imagen sorry" >
+    <p>Estamos trabajando para darle un buen servicio. Porfavor llene este formulario <a href="/contacto/">Aquí</a> y nosotros lo llamaremos.</p>
+</main>
+    
+<script src="{% static 'javascript/app.js' %}"></script>
+{%endblock%}

@@ -1,0 +1,49 @@
+{% extends "../../extras/padre.html" %}
+
+{%block title%} Contactenos  {%endblock%}
+
+{% block content%}
+    <section class="contac sombra">
+        <h2>Contacto</h2>
+
+
+        <form class="formulario" id="form" action="/contacto/" method="POST" novalidate>
+            <fieldset>
+                <legend>Completa el Formulario y nos contactaremos contigo </legend>
+
+                <div class="contenedor-campos">
+                    <div class="campo">
+                        <label for="nombre">Nombre</label>
+                        <input class="input-text" type="text" id= 'nombre' placeholder="Ingrese Nombre">
+                        <div class="error"></div><br>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Telefono</label>
+                        <input class="input-text" type="text" id= 'telefono' placeholder="Ingrese N° Telefono">
+                        <div class="error"></div><br>
+                    </div>  
+
+                    <div class="campo">
+                        <label for="email">Email</label>
+                        <input class="input-text" type="text" id= 'email' placeholder="Ingrese Correo">
+                        <div class="error" id="error"></div><br>
+                    </div>
+
+                    <div class="campo">
+                        <label for="mensaje">Texto</label>
+                        <textarea class="input-text" id= 'mensaje'> </textarea>
+                        <div class="error"></div>
+                    </div>
+                </div><!--Este es el contenedor de los campos-->
+
+                <div class="aliear-derecha flex">
+                    <input class="boton-verde w-sm-100" type="submit" value="Enviar">
+                </div>
+            </fieldset>
+        </form>   
+    </section>
+    {%load static %}
+    <script src="{% static 'javascript/contacto.js' %}"></script>
+{%endblock%}
+

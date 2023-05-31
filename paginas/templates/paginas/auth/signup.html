@@ -1,0 +1,65 @@
+{% extends "../../extras/padre.html" %}
+
+{%block title%} Crear Cuenta  {%endblock%}
+
+{% block content%}
+  <section class="contenedor seccion contenido-centrado" ><div class="error" id="error"></div>
+      <div>
+          <div class="regi">
+            <div class="text-header">Sign up</div>
+          </div>
+          <div class="card-body">
+            <form class="formulario" action="/signup" id="formulario" method="POST" novalidate>
+                  <div class="form-group">
+                    <label for="apellido">Apellido Paterno:</label>
+                    <input class="form-control" name="apellido" id="apellido" type="text" placeholder="Tu Apellido Paterno">
+                    <div class="error" id="apellidoError"></div><br>
+                  </div>
+                  <div class="form-group">
+                    <label for="apellido2">Apellido Materna:</label>
+                    <input class="form-control" name="apellido2" id="apellido2" type="text" placeholder="Tu Apellido Materna">
+                    <div class="error" id="apellido2Error"></div><br>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="nombre">Nombres:</label>
+                    <input class="form-control" name="nombre" id="nombre" type="text" placeholder="Tu Nombre">
+                    <div class="error" id="nombreError"></div><br>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="telefono">Telefono:</label>
+                    <input class="form-control" name="telefono" id="telefono" type="telefono" placeholder="Tu n° Celular">
+                    <div class="error" id="telefonoError"></div><br>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input class="form-control" name="email" id="email" type="email" placeholder="Tu Correo">
+                    <div class="error" id="emailError"></div><br>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input class="form-control" name="password" id="password" type="password" placeholder="Crear Contraseña">
+                    <div class="error" id="passwordError"></div><br>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="confirm-password">Confirma Password:</label>
+                    <input class="form-control" name="confirm-password" id="confirm-password" type="password" placeholder="Confirma Contraseña">
+                    <div class="error" id="confirm-passwordError"></div><br>
+                  </div>
+
+                <input class="boton boton-verde" type="submit" class="btn" value="Registrar">
+            </form>
+          </div>
+          </div>
+          
+        </div>
+        <a href="/login" class="boton-volver">Volver</a>
+  </section>
+
+  {% load static %}
+  <script src="{% static 'javascript/signup.js' %}"></script>
+{%endblock%}
