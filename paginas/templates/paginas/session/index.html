@@ -48,6 +48,31 @@
 </header>
 
 
+ <legend class="producto__nombre">Nuestros Productos</legend>
+
+
+    <div class="contenedor grid"> 
+       {% for p in productos %}  
+        <div class="contenido-anuncio"> 
+                
+                <div class="productos">
+                    <h3 >{{p.titulo |title }}</h3>
+                    <div class="contenido-anuncio">
+                        {% if p.imagen %}
+                            <img class="producto__imagen" src="{{ p.imagen }}" alt="imagen Camisa">
+                        {% endif %}
+                        <h5 >{{p.id_categoria}}</h5>        
+                        <p>{{p.descripcion}}</p>
+                        <p class="precio">${{p.precio}}</p>  
+                        <a class="boton-amarilla boton" href="/producto/">Ver Detalles</a>
+                    </div> <!--Contenido anuncio-->
+                </div><!--Anuncio-->
+        </div>
+        {% endfor %}                              
+    </div>
+
+
+
 
 {%endblock%}
 

@@ -77,9 +77,3 @@ if(document.querySelector('#container-slider')){
      elements[nextElement].style.zIndex =1;
  }
 
-
- $('.carousel').carousel({
-    interval: 2000
-  })
- 
-  

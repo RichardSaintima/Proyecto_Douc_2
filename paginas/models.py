@@ -23,7 +23,7 @@ class Vendedor(models.Model):
     apellido_materno =  models.CharField(max_length=60)
     fecha_nacimiento =  models.DateField(blank=False, null=False)
     id_genero =         models.ForeignKey('Genero',on_delete=models.CASCADE, db_column='idGenero')
-    img_trabajador =    models.ImageField(upload_to='vendedor', null=True)
+    imagen =            models.ImageField(upload_to='vendedor', null=True)
     telefono =          models.CharField(max_length=45)
     email =             models.EmailField(unique=True, max_length=100, blank=True, null=True)
     password =          models.CharField(max_length=20)
@@ -43,11 +43,11 @@ class Categoria(models.Model):
 class Productos(models.Model):
     id_producto =       models.AutoField(primary_key=True)
     titulo =            models.CharField(max_length=60)
-    precio =            models.IntegerField(max_length=20)
-    img_producto =      models.ImageField(upload_to='productos', null=True)
-    descripcion =       models.CharField(max_length=60)
+    precio =            models.IntegerField()
+    imagen =            models.ImageField(upload_to='productos', null=True)
+    descripcion =       models.CharField(max_length=210)
     stock =             models.IntegerField()
     id_categoria =      models.ForeignKey('Categoria',on_delete=models.CASCADE, db_column='idCategoria')
     
 def __str__(self):
-        return str(self.id_producto)
+        return str(self.titulo)+" "+str(self.id_producto)
