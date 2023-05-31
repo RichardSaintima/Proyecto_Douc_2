@@ -29,7 +29,7 @@ def producto(request) :
 def vendedor(request) :
     # alumnos = Alumno.objects.all()
     context ={}
-    return render(request, 'paginas/vendedores/vendedor.html', context)
+    return render(request, 'paginas/trabajadores/vendedor.html', context)
 def sorry(request) :
     # alumnos = Alumno.objects.all()
     context ={}
