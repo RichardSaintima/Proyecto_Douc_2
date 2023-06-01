@@ -498,14 +498,49 @@ body
 
 
 /**Producto**/
-@media (min-width: 668px) {
-    .contenedor-anuncios {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 95%;
-    }
+@media (min-width: 600px ){
+     .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.5rem;
 }
+}
+.grid {
+    width: 95%;
+    margin: 0 auto;
+}
+.nombre_pro {
+    padding: auto;
+}
+.marca {
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: .5rem;
+}
+
+.descripcion {
+    font-weight: normal;
+    font-size: 1.3rem;
+    margin: 0;
+    padding: .5rem;
+}
+
+@media (min-width: 768px ){
+     .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1.5rem;
+}
+}
+
+
+
+.contenedor-anuncios {
+    padding: 2rem;
+
+}
+
 .productos {
     align-items: center;
     display: flex;
@@ -513,17 +548,17 @@ body
     background-color: #eee;
     border: 1px solid #4d4d4d;
     margin-bottom: 2rem;
+    padding: 1rem;
 }
-.productos .contenido-anuncio {
-    padding: 2rem;
-}
+
+
 .productos h2,
 .productos p {
     margin: 0;
 }
 .productos .precio,
 .precio {
-    color: #71b100;
+    color: #789841;
     font-size: 3rem;
     font-weight: 700;
 }
