@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from paginas.models import Categoria, Genero, Producto, Persona
@@ -42,11 +42,6 @@ def login_v(request):
     context = {}
     return render(request, 'paginas/auth/login.html', context)
 
-@login_required
-def logout_v(request):
-    if request.user.is_authenticated:
-        logout(request)
-    return redirect('/')
 
 
 def signup(request):
@@ -233,3 +228,11 @@ def sorry(request) :
     context ={}
     return render(request, 'extras/sorry.html', context)
 
+
+def logout_v(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('/')
+    else:
+        # El usuario no tiene la sesión abierta, permanecer en la misma página
+        return redirect(reverse('logout/'))

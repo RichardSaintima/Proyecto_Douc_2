@@ -8,7 +8,6 @@ urlpatterns = [
     path('contacto/', views.contacto , name='contacto'),
     path('login/', views.login_v , name='login'),
     path('signup/', views.signup , name='signup'),
-    path('logout/', views.logout_v, name='logout'),
     path('sorry/', views.sorry , name='sorry'),
     path('producto/', views.producto , name='producto'),
     path('comprar/<int:pk>/', views.comprar , name='comprar'),
@@ -18,4 +17,5 @@ urlpatterns = [
     path('actualizar/<str:pk>', views.actualizar, name='actualizar'),
     path('productoUpdate/<int:pk>/', views.productoUpdate, name='productoUpdate'),
     path('vendedor/', views.vendedor , name='vendedor'),
+    path('logout/', views.logout_v, name='logout'),
 ]
