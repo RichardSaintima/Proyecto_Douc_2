@@ -1,0 +1,48 @@
+{% extends "../../extras/padre.html" %}
+
+{%block title%} Actualiza Producto  {%endblock%}
+
+{% block content%}
+
+
+<section class="contenedor seccion contenido-centrado" >
+    <a href="/vendedor" class="volver-producto">Volver</a>
+    <div class="mensaje" id="idMensajes">
+      {% if mensaje %}
+          {{mensaje}}
+      {% endif %}
+  </div>
+    <div>
+        <div class="regi">
+          <div class="text-header">Actualizar</div>
+       {% if producto %} </div>
+        
+          <form class="formulario" action="{% url 'productoUpdate' pk=producto.id_producto %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <pre>TITULO:  <input type="text" name="titulo" placeholder="Ingresa titulo" value="{{producto.titulo}}"> </pre>
+            <pre>PRECIO:  <input type="number" name="precio" value="{{producto.precio}}"> </pre>
+            <pre>IMAGEN:  <input type="file" accept="image/jpeg, image/png" name="imagen" value="{{producto.imagen}}"> </pre>
+            <pre>DESCRIPCION:  <input type="text" name="descripcion" placeholder="Ingresa Detalles" value="{{producto.descripcion}}"></input> </pre>
+            <pre>CATEGORIA:  <select name="categoria">
+              {% for categoria in categorias %}
+
+                {% if categoria.categoria == producto.id_categoria.categoria%}
+                    <option value="{{categoria.id_categoria}} selected">{{ categoria.categoria }}</option>
+                {% else %}
+                    <option value="{{categoria.id_categoria}}">{{ categoria.categoria }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+            </pre>
+
+            <input class="boton boton-verde" type="submit" name="option" class="btn" value="Actualizar Producto">
+          </form>
+         
+        </div>
+      {% endif %} 
+
+      </div>
+
+</section>
+{%endblock%}

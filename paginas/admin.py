@@ -1,28 +1,23 @@
 from django.contrib import admin
-from .models import  Cliente, Genero, Vendedor, Categoria, Productos
+from paginas.models import Categoria, Genero, Producto, Persona
 # Register your models here.
 
-class clienteAdmin(admin.ModelAdmin) :
-    list_display =['nombre', 'apellido_paterno', 'apellido_materno',  'telefono',  'email']
-    search_fields = ['email']
-    list_per_page = 10
+# class personaAdmin(admin.ModelAdmin) :
+#     list_display =['id_persona', 'nombre', 'apellido', 
+#      'id_genero', 'telefono', 'email','password','is_vendedor']
+#     # list_per_page = 2
 
-class vendedorAdmin(admin.ModelAdmin) :
-    list_display =['rut', 'nombre', 'apellido_paterno', 'apellido_materno', 'fecha_nacimiento',
-     'id_genero','imagen', 'telefono', 'email', 'direccion', 'activo']
-    list_editable =['imagen', 'email', 'direccion', 'activo']
-    list_per_page = 2
-
-class productoAdmin(admin.ModelAdmin) :
-    list_display =['id_producto', 'titulo', 'precio', 'imagen', 'descripcion',
-     'stock','id_categoria']  
-    list_filter =['id_categoria', 'precio']
-    list_per_page = 2
-    list_editable =['imagen']
+# class productoAdmin(admin.ModelAdmin) :
+#     list_display =['id_producto', 'titulo', 'precio', 'imagen', 'descripcion',
+#     'id_categoria']  
+#     # list_filter =['id_categoria', 'precio']
+#     list_per_page = 10
+#     # list_editable =['imagen']
+    
 
 # Register your models here.
-admin.site.register(Cliente, clienteAdmin)
+
 admin.site.register(Genero)
-admin.site.register(Vendedor, vendedorAdmin)
+admin.site.register(Persona)
 admin.site.register(Categoria)
-admin.site.register(Productos, productoAdmin)
+admin.site.register(Producto)

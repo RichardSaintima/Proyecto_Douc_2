@@ -5,7 +5,7 @@ var apellido2 = document.getElementById('apellido2');
 var telefono = document.getElementById('telefono');
 var email = document.getElementById('email');
 var password = document.getElementById('password');
-var confirmPassword = document.getElementById('confirm-password');
+var confirmPassword = document.getElementById('password2');
 
 var form = document.getElementById('formulario');
 form.addEventListener('submit', function(evt){
@@ -17,7 +17,7 @@ form.addEventListener('submit', function(evt){
     document.getElementById('telefonoError').innerHTML = "";
     document.getElementById('emailError').innerHTML = "";
     document.getElementById('passwordError').innerHTML = "";
-    document.getElementById('confirm-passwordError').innerHTML = "";
+    document.getElementById('passwordError2').innerHTML = "";
   
     var emailValidado = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (!emailValidado.test(email.value)) {
@@ -61,7 +61,7 @@ form.addEventListener('submit', function(evt){
     }
 
     if (password.value !== confirmPassword.value){
-        document.getElementById('confirm-passwordError').innerHTML = ("Las contraseña son diferents");
+        document.getElementById('passwordError2').innerHTML = ("Las contraseña son diferents");
     }
     
     setTimeout(function() {
@@ -71,8 +71,45 @@ form.addEventListener('submit', function(evt){
         document.getElementById('telefonoError').innerHTML = "";
         document.getElementById('emailError').innerHTML = "";
         document.getElementById('passwordError').innerHTML = "";
-        document.getElementById('confirm-passwordError').innerHTML = "";
+        document.getElementById('passwordError2').innerHTML = "";
       }, 5000);
+
+      function verificarCampos() {
+        var apellidoValue = apellido.value.trim();
+        var apellido2Value = apellido2.value.trim();
+        var nombreValue = nombre.value.trim();
+        var telefonoValue = telefono.value.trim();
+        var emailValue = email.value.trim();
+        var passwordValue = password.value.trim();
+        var confirmPasswordValue = confirmPassword.value.trim();
+      
+        if (
+          apellidoValue !== '' &&
+          apellido2Value !== '' &&
+          nombreValue !== '' &&
+          telefonoValue !== '' &&
+          emailValue !== '' &&
+          passwordValue !== '' &&
+          confirmPasswordValue !== ''
+        ) {
+          form.removeAttribute('id');
+          document.getElementById('nombreError').innerHTML = '';
+          document.getElementById('apellidoError').innerHTML = '';
+          document.getElementById('apellido2Error').innerHTML = '';
+          document.getElementById('telefonoError').innerHTML = '';
+          document.getElementById('emailError').innerHTML = '';
+          document.getElementById('passwordError').innerHTML = '';
+          document.getElementById('passwordError2').innerHTML = '';
+        }
+      }
+      
+      apellido.addEventListener('input', verificarCampos);
+      apellido2.addEventListener('input', verificarCampos);
+      nombre.addEventListener('input', verificarCampos);
+      telefono.addEventListener('input', verificarCampos);
+      email.addEventListener('input', verificarCampos);
+      password.addEventListener('input', verificarCampos);
+      confirmPassword.addEventListener('input', verificarCampos);  
 })
 
   

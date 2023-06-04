@@ -358,6 +358,11 @@ body
     text-transform: uppercase;
     display: block;
   }
+
+  pre {
+    font-weight: 900;
+    text-transform: uppercase;
+  }
   .formulario input:not([type=submit]), .formulario select, .formulario textarea {
     padding: 1rem;
     display: block;
@@ -511,6 +516,7 @@ body
 }
 .nombre_pro {
     padding: auto;
+    margin: 1rem;
 }
 .marca {
     font-weight: 600;
@@ -550,6 +556,28 @@ body
     margin-bottom: 2rem;
     padding: 1rem;
 }
+@media (min-width: 768px ){
+   .seleccion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;  
+ 
+    
+    .seleccion a {
+    margin: 1rem;
+    
+}
+    
+}  
+}
+.seleccion a {
+    margin: 1rem;
+    
+}
+.seleccion {
+    display: grid;
+    
+}
 
 
 .productos h2,
@@ -561,6 +589,8 @@ body
     color: #789841;
     font-size: 3rem;
     font-weight: 700;
+    text-align: center;
+    padding: .5rem;
 }
 .producto__nombre
 {
@@ -610,6 +640,27 @@ body
 
 
 /* ANUNCIOS */
+
+
+@media (min-width: 768px ){
+   .el12 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    padding: 1rem;
+}  
+
+    .el1 {
+        padding: 2rem;
+    }
+    .el2 {
+        padding: 2rem;
+    }
+}
+.compra_imagen {
+    width: 100%;
+    height: 100%;
+}
 @media (min-width: 768px ){
     .anuncios
     {
@@ -651,8 +702,8 @@ body
 }
 }
 .formulario__campo{
-    border-color: var(---primatioOscuro);
-    border-width: 1rem;
+    border-color: #ed94d2;
+    border-width: .5rem;
     border-style:solid ;
     background-color: transparent;
     color:var(---blando) ;
@@ -680,82 +731,6 @@ body
     background-color: var(---segundarioOscuro);
 }
 /* ANUNCIOS */
-
-
-/* BOTONES */
-@media (min-width: 768px ){
-     .boton-volver {
-    background: rgb(174, 202, 12);
-    background: radial-gradient(circle,
-    rgba(185, 217, 103, 0.82) 25%,
-    rgba(53, 212, 5, 0.537) 98%);
-    border: none;
-    color: #ffffff;
-    display: inline-block;
-    font-weight: 700;
-    margin-top: 2.5rem;
-    padding: 1rem 3rem;
-    text-align: center;
-    text-decoration: none;
-    margin-left: 85%;
-    color: var(--Oscuro);
-}
-}
-.boton-volver {
-    background: rgb(174, 202, 12);
-    background: radial-gradient(circle,
-    rgba(185, 217, 103, 0.82) 25%,
-    rgba(53, 212, 5, 0.537) 98%);
-    border: none;
-    color: #ffffff;
-    display: inline-block;
-    font-weight: 700;
-    margin-top: 2.5rem;
-    padding: 1rem 3rem;
-    text-align: center;
-    text-decoration: none;
-    color: var(--Oscuro);
-}
-
-
-.boton-volver:hover{
-    background-color: #57e81d;
-    cursor: pointer;
-}
-.boton-verde {
-    background-color: #96d922;
-    border: none;
-    color: #ffffff;
-    display: inline-block;
-    font-weight: 700;
-    margin-top: 2.5rem;
-    padding: 1rem 3rem;
-    text-align: center;
-    text-decoration: none;
-}
-.boton-verde:hover{
-    background-color: #1d2ee8;
-    cursor: pointer;
-}
-
-.boton-amarilla {
-    background-color: #fdc305;
-    border: none;
-    color: #fff;
-    display: inline-block;
-    font-weight: 700;
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
-    padding: 1rem 3rem;
-    text-align: center;
-    text-decoration: none;
-}
-.boton-amarilla:hover{
-    background-color: #c31de8;
-    cursor: pointer;
-}
-
-
 
 
 /* CARRUSEL IMAGENES */
@@ -941,10 +916,6 @@ body
 /* CARRUSEL DE IMAGEN DE iNDEX */
 
 
-.boton{
-    margin-top: 0;
-    margin-bottom: 0;
-}
 .dev{
     color: #1d2ee8;
     text-decoration: none;
@@ -1018,9 +989,146 @@ body
     padding: auto;
 }
 .error {
-    color: red;
+    background-color: red;
+    border-bottom: solid 3px white;
+    text-align: center;
+    color: rgb(255, 255, 255);
     font-size: 2rem;
     padding: 0;
     margin: 0;
     font-weight: 500;
 }
+
+/* VENDEDORES */
+.mensaje {
+    display: grid;
+    justify-content: center;
+    background-color: #cf7fe3;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem;
+}
+.contenedor th {
+    background-color: #ff53e8;
+}
+
+@media (min-width: 380px ){
+    .contenedor th {
+        padding: .5rem ;
+        font-weight: 500;
+        font-size: .7rem;
+        text-transform: uppercase;
+        margin: 0;
+    }
+    .contenedor td {
+        padding: .3rem .5rem;
+        font-size: 1.2rem;
+        text-align: center;
+        margin: 0;
+
+        }
+    
+    .contenedor table {
+        padding: .3rem .5rem;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 95%;
+        max-width: 120rem;
+        margin: 0 auto;
+        
+    }
+    .agregar {
+    background-color: #f6d844;
+    color: white;
+        
+    }
+    .agregar a {
+    color: white;
+        
+    }
+    .agregar:hover {
+    background-color: #fded9a;
+    color: white;
+    cursor: pointer;
+    }
+    .eliminar {
+    background-color: #9c0909;
+    color: white;
+        
+    }
+    .eliminar a {
+    color: white; 
+    }
+    .eliminar:hover {
+    background-color: #ea7474;
+    color: white;
+    cursor: pointer;
+        
+    }    
+}
+
+.producto__imagen {
+    width: 100%;
+    display: block;
+    height: 170px;  
+}
+
+.producto__imagen:hover {
+    transform: translateX(6px);
+}
+
+@media (min-width: 768px ){
+    .contenedor th {
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        font-size: 1.7rem;
+        text-transform: uppercase;
+    }
+    .contenedor td {
+        padding: .5rem 2.5rem;
+        font-size: 1.5rem;
+        text-align: center;
+        
+    }
+    .contenedor table {
+        padding: .5rem 2.5rem;
+        font-size: 1.5rem;
+        text-align: center;
+        width: 95%;
+        max-width: 120rem;
+        margin: 0 auto;
+        
+    }
+    .agregar {
+    background-color: #f6d844;
+    color: white;
+        
+    }
+    .agregar a {
+    color: white;
+        
+    }
+    .agregar:hover {
+    background-color: #fded9a;
+    color: white;
+        cursor: pointer;
+    }
+    .eliminar {
+    background-color: #9c0909;
+    color: white;
+        
+    }
+    .eliminar a {
+    color: white; 
+    }
+    .eliminar:hover {
+    background-color: #ea7474;
+    color: white;
+    cursor: pointer;
+        
+    }    
+}
+
+/* VENDEDORES */

@@ -1,0 +1,132 @@
+/* BOTONES */
+@media (min-width: 768px ){
+    .boton-volver {
+   background: rgb(174, 202, 12);
+   background: radial-gradient(circle,
+   rgba(185, 217, 103, 0.82) 25%,
+   rgba(53, 212, 5, 0.537) 98%);
+   border: none;
+   color: #ffffff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+   margin-left: 85%;
+   color: var(--Oscuro);
+}
+}
+.boton-volver {
+   background: rgb(174, 202, 12);
+   background: radial-gradient(circle,
+   rgba(185, 217, 103, 0.82) 25%,
+   rgba(53, 212, 5, 0.537) 98%);
+   border: none;
+   color: #ffffff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+   color: var(--Oscuro);
+}
+
+
+.boton-volver:hover{
+   background-color: #96d77c;
+   cursor: pointer;
+}
+@media (min-width: 768px ){
+    .volver-producto{
+   background: rgb(174, 202, 12);
+   background: radial-gradient(circle,
+   rgba(185, 217, 103, 0.82) 25%,
+   rgba(53, 212, 5, 0.537) 98%);
+   border: none;
+   color: #ffffff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+   
+   color: var(--Oscuro);
+}
+}
+.volver-producto {
+   background: rgb(174, 202, 12);
+   background: radial-gradient(circle,
+   rgba(185, 217, 103, 0.82) 25%,
+   rgba(53, 212, 5, 0.537) 98%);
+   border: none;
+   color: #ffffff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+   color: var(--Oscuro);
+}
+
+
+.volver-producto:hover{
+   background-color: #96d77c;
+   cursor: pointer;
+}
+.boton-verde {
+   background-color: #97d826;
+   border: none;
+   color: #ffffff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+}
+.boton-verde:hover{
+   background-color: #727be7;
+   cursor: pointer;
+}
+
+.boton-amarilla {
+   background-color: #fdc305;
+   border: none;
+   color: #fff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   margin-bottom: 2rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+}
+.boton-amarilla:hover{
+   background-color: #ed5faa;
+   cursor: pointer;
+}
+.boton-amarilla2 {
+   background-color: #f0d98c;
+   border: none;
+   color: #fff;
+   display: inline-block;
+   font-weight: 700;
+   margin-top: 2.5rem;
+   margin-bottom: 2rem;
+   padding: 1rem 3rem;
+   text-align: center;
+   text-decoration: none;
+}
+.boton-amarilla2:hover{
+   background-color: #e891c0;
+   cursor: pointer;
+}
+
+.boton{
+    margin-top: 0;
+    margin-bottom: 0;
+}

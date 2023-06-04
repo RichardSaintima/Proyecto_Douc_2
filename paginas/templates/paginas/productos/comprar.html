@@ -1,0 +1,50 @@
+{% extends "../../extras/padre.html" %}
+
+{%block title%} Productos  {%endblock%}
+{% load humanize %}
+{% load static %}
+{% block content%}
+ <h1 style="text-align: center;">Comprar Ahora</h1>
+
+ <div class="contenedor">
+    <div class="producto">
+        <div class="el12">
+            
+            <div class="el1">
+                <h3 class="nombre_pro">{{ producto.titulo | title }}</h3>
+                {% if producto.imagen %}
+                    <img class="compra__imagen" src="{{ producto.imagen.url }}" alt="imagen Producto">
+                {% endif %}  
+            </div>
+       
+            <div class="el2">
+                <h5 class="marca">{{ producto.id_categoria }}</h5>
+                <p class="descripcion">{{ producto.descripcion }}</p>
+                <p class="precio">${{ producto.precio | intcomma }}</p> 
+            
+                <div class="centrar-texto">
+                    <form class="formulario-anuncios">
+                        <select class="formulario__campo" >
+                            <option disabled selected >---Seleccionar Color---</option>
+                            <option value="">Blanco</option>
+                            <option value="">Rosado</option>
+                            <option value="">Azul</option>
+                            <option value="">Amarillo</option>
+                            <option value="">Rojo</option>
+                            <option value="">Negro</option>
+                        </select>
+                        <input class="formulario__campo" type="number" placeholder="Cantidad" min="1">
+                        <div class="seleccion">
+                            <a class="boton-amarilla boton formulario__submit" href="/verificaCompra">Pagar :(</a>
+                        </div>
+                    </form>                     
+                </div>
+    
+            </div> 
+        </div>
+
+    </div><!--producto-->
+</div><!--contenedor-->
+
+
+{%endblock%}

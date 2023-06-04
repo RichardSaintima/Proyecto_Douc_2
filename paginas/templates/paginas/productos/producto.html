@@ -1,9 +1,17 @@
 {% extends "../../extras/padre.html" %}
 
-{%block title%} Productos  {%endblock%}
-
+{%block title%} Carrito  {%endblock%}
+{% load humanize %}
+{% load static %}
 {% block content%}
- <h1>Los Productos</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit sunt esse, doloribus deleniti alias cupiditate reprehenderit velit quo fugiat. Recusandae temporibus doloremque ratione sit inventore magni vitae earum possimus assumenda!</p>
+ <h1 style="text-align: center;">Carrito de Compras</h1>
+
+
+ <ul>
+   {% for producto in carrito %}
+     <li>{{ producto }}</li>
+   {% empty %}
+     <p style="text-align: center; font-weight: 900; font-size: 7rem;">No hay Producto en el carrito</p>
+   {% endfor %}
 
 {%endblock%}

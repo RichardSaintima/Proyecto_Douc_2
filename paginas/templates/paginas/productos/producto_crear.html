@@ -1,0 +1,43 @@
+{% extends "../../extras/padre.html" %}
+
+{%block title%} Crear Nuevo Producto  {%endblock%}
+
+{% block content%}
+<div class="mensaje" id="idMensajes">
+  {% if mensaje %}
+      {{mensaje}}
+  {% endif %}
+</div>
+
+
+ <section class="contenedor seccion contenido-centrado" ><div class="error" id="error"></div>
+    <a href="/vendedor" class="volver-producto">Volver</a>
+    <div>
+        <div class="regi">
+          <div class="text-header">Crear</div>
+        </div>
+          <form class="formulario" action="" id="formulario" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <pre>TITULO:  <input type="text" name="titulo" placeholder="Ingresa titulo"> </pre>
+            <pre>PRECIO:  <input type="number" name="precio" placeholder="Ingresa costo"> </pre>
+            <pre>IMAGEN:  <input type="file" accept="image/jpeg, image/png" name="imagen"> </pre>
+            <pre>DESCRIPCION:  <input type="text" name="descripcion" placeholder="Ingresa Detalles"></input> </pre>
+            <pre>CATEGORIA:  <select name="categoria">
+              <option value="" selected disabled>--Selecccinar--</option>
+              {% for c in categorias %}
+                <option value="{{c.id_categoria}}">{{ c.categoria }}</option>
+              {% endfor %}
+            </select>
+            </pre>
+
+            <input class="boton boton-verde" type="submit" name="option" class="btn" value="Guardar Producto">
+          </form>
+        </div>
+
+      </div>
+
+</section>
+
+
+{%endblock%}

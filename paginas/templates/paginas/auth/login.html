@@ -3,28 +3,49 @@
 {%block title%} Iniciar Sesion  {%endblock%}
 
 {% block content%}
-    <main class="contenedor seccion contenido-centrado">
-        <h1 >Iniciar Sesión</h1>
-        <form  class="formulario" id="formulario" action="/login" method="POST" novalidate>
-            <fieldset>
-                <legend>Información personal</legend>
-                <label for="email">E-mail</label>
-                <input type="email" name="email" placeholder="Su correo" id="email">
-                <div class="error" id="emailError"></div><br>
-                
 
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Su password" id="password">
-                <div class="error" id="passwordError"></div>
 
-            </fieldset>
 
-            <input type="submit" value="Iniciar Sesion" class="boton boton-verde">
-        <a class="reg" href="/signup">Registrese aquí</a>
-        
-        </form>
-    </main>
+<main class="contenedor seccion contenido-centrado">
+    <h1>Iniciar Sesión</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mensaje" id="idMensajes">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form class="formulario" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <fieldset>
+            <div class="form-group">
+                <label class="required" for="id_email">Email:</label>
+                <input type="email" name="email" class="vTextField" maxlength="100" autofocus required id="id_email">
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">Contraseña:</label>
+                <input type="password" name="password" class="vTextField" required id="id_password">
+            </div>
+
+            <input type="submit" value="Iniciar Sesión" class="boton boton-verde">
+            <a class="reg" href="/signup">Regístrate aquí</a>
+        </fieldset>
+    </form>
+</main>
+
+
+
     {% load static %}
     <script src="{% static 'javascript/login.js' %}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    $("#idMensajes").delay(5000).fadeOut("slow");
+
+    });
+</script>
 {%endblock%}
 
