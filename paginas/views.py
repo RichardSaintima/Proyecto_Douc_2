@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect,  reverse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from .custom_auth import custom_authenticate, custom_login, custom_logout
 from paginas.models import Categoria, Genero, Producto, Persona
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -23,24 +22,38 @@ def contacto(request) :
     context = {}
     return render(request, 'paginas/contactos/contacto.html', context)
 
+
 def login_v(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
 
-        user = authenticate(request, email=email, password=password)
+        try:
+            persona = Persona.objects.get(email=email)
 
-        if user is not None:
-            if user.activo:
-                return redirect('vendedor/')
+            if persona.password == password:
+                custom_login(request, persona)
+                if persona.is_vendedor:
+                    return redirect('vendedor/')
+                else:
+                    return redirect('/')
             else:
-                return redirect('/')
-        else:
+                messages.error(request, 'Credenciales inválidas')
+                context = {}
+                return render(request, 'paginas/auth/login.html', context)
+
+        except Persona.DoesNotExist:
             messages.error(request, 'Credenciales inválidas')
             context = {}
             return render(request, 'paginas/auth/login.html', context)
+
     context = {}
     return render(request, 'paginas/auth/login.html', context)
+
+
+def logout_v(request):
+    custom_logout(request)
+    return redirect('/')
 
 
 
@@ -92,6 +105,7 @@ def signup(request):
         return render(request, 'paginas/auth/signup.html', context)
 
 
+
 def producto(request):
     if 'carrito' in request.session:
         carrito = request.session['carrito'] 
@@ -134,7 +148,6 @@ def crear(request) :
 
 
 
-
 def eliminar(request,pk):
     context ={}
     try:
@@ -150,8 +163,6 @@ def eliminar(request,pk):
         productos=Producto.objects.all()
         context ={'productos' : productos, 'mensaje' : mensaje,}
         return render(request, 'paginas/trabajadores/vendedor.html', context)
-
-
 
 
 
@@ -204,10 +215,6 @@ def productoUpdate(request, pk):
 
 
 
-
-
-
-
 def comprar(request, pk):
     producto = get_object_or_404(Producto, id_producto=pk)
     context = {'producto': producto}
@@ -227,12 +234,3 @@ def vendedor(request) :
 def sorry(request) :
     context ={}
     return render(request, 'extras/sorry.html', context)
-
-
-def logout_v(request):
-    if request.user.is_authenticated:
-        logout(request)
-        return redirect('/')
-    else:
-        # El usuario no tiene la sesión abierta, permanecer en la misma página
-        return redirect(reverse('logout/'))
