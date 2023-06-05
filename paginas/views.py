@@ -107,17 +107,7 @@ def signup(request):
 
 
 def producto(request):
-    if 'carrito' in request.session:
-        carrito = request.session['carrito'] 
-        context = {
-                'carrito': carrito,
-                }
-        return render(request, 'paginas/productos/producto.html', context)
-    else:
-        carrito = []
-        context = {
-                'carrito': carrito,
-                }
+    context = {}
     return render(request, 'paginas/productos/producto.html', context)
 
 

@@ -68,7 +68,7 @@
                     <div class="seleccion">
                         <a class="boton-amarilla boton" href="{% url 'comprar' pk=p.id_producto %}">Comprar Ahora</a> 
                         {% if p.id_producto %}
-                            <a class="boton-amarilla2 boton btn-agregar-carrito" data-producto-id="{{ p.id_producto }}">Añadir al Carrito</a> 
+                            <a class="boton-amarilla2 boton btn-agregar-carrito" href="{{ p.id_producto }}">Añadir al Carrito</a> 
                         {% endif %}
                     </div> 
                 </div> <!--Contenido anuncio-->

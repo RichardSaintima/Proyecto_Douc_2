@@ -28,9 +28,9 @@
                 <label for="id_password">Contraseña:</label>
                 <input type="password" name="password" class="vTextField" required id="id_password">
             </div>
-
+            
             <input type="submit" value="Iniciar Sesión" class="boton boton-verde">
-            <a class="reg" href="/signup">Regístrate aquí</a>
+            <a class="reg" href="{% url 'signup' %}">Regístrate aquí</a>
         </fieldset>
     </form>
 </main>

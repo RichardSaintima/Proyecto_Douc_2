@@ -1,8 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
-from django.utils import timezone
-from django.contrib.auth.models import User
 
 class Genero(models.Model):
     id_genero =         models.AutoField(db_column='idGenero', primary_key=True)
