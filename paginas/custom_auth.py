@@ -1,4 +1,6 @@
 from paginas.models import Persona
+from django.shortcuts import render, redirect,  reverse
+
 
 def custom_authenticate(email, password):
     try:
@@ -19,3 +21,11 @@ def custom_logout(request):
     request.session.flush()
     request.session.clear()
     request.session.modified = True
+
+
+def login_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if 'id_persona' not in request.session:
+            return redirect('/')
+        return view_func(request, *args, **kwargs)
+    return wrapper

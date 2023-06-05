@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect,  reverse
-from .custom_auth import custom_authenticate, custom_login, custom_logout
+from .custom_auth import custom_authenticate, custom_login, custom_logout, login_required
 from paginas.models import Categoria, Genero, Producto, Persona
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
@@ -216,9 +215,9 @@ def verificaCompra(request) :
 
 
 @login_required
-def vendedor(request) :
+def vendedor(request):
     productos = Producto.objects.all()
-    context ={"productos" : productos}
+    context = {"productos": productos}
     return render(request, 'paginas/trabajadores/vendedor.html', context)
 
 def sorry(request) :
