@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,  reverse
-from .custom_auth import custom_authenticate, custom_login, custom_logout, login_required
+from paginas.custom_auth import custom_authenticate, custom_login, custom_logout, login_required
 from paginas.models import Categoria, Genero, Producto, Persona
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
@@ -28,12 +28,12 @@ def login_v(request):
         password = request.POST['password']
 
         try:
-            persona = Persona.objects.get(email=email)
+            persona = custom_authenticate(email, password)
 
-            if persona.password == password:
+            if persona is not None:
                 custom_login(request, persona)
                 if persona.is_vendedor:
-                    return redirect('vendedor/')
+                    return redirect('/vendedor/')
                 else:
                     return redirect('/')
             else:
@@ -209,6 +209,7 @@ def comprar(request, pk):
     context = {'producto': producto}
     return render(request, 'paginas/productos/comprar.html', context)
 
+@login_required
 def verificaCompra(request) :
     context ={}
     return render(request, 'paginas/compra/verificar.html', context)
@@ -216,9 +217,19 @@ def verificaCompra(request) :
 
 @login_required
 def vendedor(request):
+    persona = Persona.objects.get(id_persona=request.session['id_persona'])
+    if persona.is_vendedor:
+        productos = Producto.objects.all()
+        context = {"productos": productos}
+        return render(request, 'paginas/trabajadores/vendedor.html', context)
+    else:
+        return redirect('/')
+    
+
+def vendedorIndex(request):
     productos = Producto.objects.all()
     context = {"productos": productos}
-    return render(request, 'paginas/trabajadores/vendedor.html', context)
+    return render(request, 'paginas/trabajadores/index.html', context)
 
 def sorry(request) :
     context ={}

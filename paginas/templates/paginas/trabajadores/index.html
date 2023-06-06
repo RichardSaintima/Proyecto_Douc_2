@@ -1,0 +1,40 @@
+{% extends "../../extras/vendedor.html" %}
+
+{%block title%} Inicio Vendedor  {%endblock%}
+{% load humanize %}
+{% load static %}
+{% block content%}
+ 
+<div style="text-align: center;">
+    <legend class="producto__nombre">Nuestros Productos</legend>   
+</div>
+<a href="/vendedor/" class="boton-volver">Volver</a>
+  {% if productos %}
+  <div class="grid">
+      {% for p in productos %} 
+      <div class="card">
+          <div class="contenedor">    
+              <div class="productos">
+                  <h3 class="nombre_pro">{{ p.titulo|title }}</h3>
+                  <div class="contenido-anuncio">
+                      {% if p.imagen %}
+                          <img class="producto__imagen" src="{{ p.imagen.url }}" alt="imagen Prducto">
+                      {% endif %}
+                      <h5 class="marca">{{ p.id_categoria }}</h5>        
+                      <p class="descripcion">{{ p.descripcion }}</p>
+                      <p class="precio">${{ p.precio|intcomma }}</p> 
+                      <div class="seleccion">
+                        <a class="agregar boton1" href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a>
+                        <a class="eliminar boton1" href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a>
+                    </div> 
+                </div> <!--Contenido anuncio-->
+            </div><!--Anuncio-->
+        </div>
+    </div> 
+      {% endfor %} 
+  </div>
+  <a href="/vendedor/" class="boton-volver">Volver</a>
+  {% else %}
+  <p style="text-align: center; font-weight: 900; font-size: 7rem;">NO Hay Producto Disponible</p>
+  {% endif %}
+{%endblock%}

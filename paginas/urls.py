@@ -15,6 +15,7 @@ urlpatterns = [
     path('actualizar/<str:pk>', views.actualizar, name='actualizar'),
     path('productoUpdate/<int:pk>/', views.productoUpdate, name='productoUpdate'),
     path('vendedor/', views.vendedor , name='vendedor'),
+    path('vendedorIndex/', views.vendedorIndex , name='vendedorIndex'),
     path('contacto/', views.contacto , name='contacto'),    
     path('nosotros/', views.nosotros , name='nosotros'),
     path('sorry/', views.sorry , name='sorry'),

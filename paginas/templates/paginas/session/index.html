@@ -54,7 +54,8 @@
 
 {% if productos %}
 <div class="grid">
-    {% for p in productos %}  
+    {% for p in productos %} 
+    <div class="card">
         <div class="contenedor">    
             <div class="productos">
                 <h3 class="nombre_pro">{{ p.titulo|title }}</h3>
@@ -66,16 +67,20 @@
                     <p class="descripcion">{{ p.descripcion }}</p>
                     <p class="precio">${{ p.precio|intcomma }}</p> 
                     <div class="seleccion">
-                        <a class="boton-amarilla boton" href="{% url 'comprar' pk=p.id_producto %}">Comprar Ahora</a> 
+                      <a class="boton-amarilla boton" href="{% url 'comprar' pk=p.id_producto %}">Comprar Ahora</a>
+                       
                         {% if p.id_producto %}
-                            <a class="boton-amarilla2 boton btn-agregar-carrito" href="{{ p.id_producto }}">Añadir al Carrito</a> 
+                        <a class="boton-amarilla2 boton btn-agregar-carrito" href="{{ p.id_producto }}">Añadir al Carrito</a> 
                         {% endif %}
-                    </div> 
-                </div> <!--Contenido anuncio-->
-            </div><!--Anuncio-->
-        </div>
+                  </div> 
+              </div> <!--Contenido anuncio-->
+          </div><!--Anuncio-->
+      </div>
+  </div> 
     {% endfor %} 
 </div>
+
+
 {% else %}
 <p style="text-align: center; font-weight: 900; font-size: 7rem;">NO Hay Producto Disponible</p>
 {% endif %}

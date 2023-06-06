@@ -8,8 +8,8 @@
  <h1 style="text-align: center;">Editar, Eliminar o Agrega Productos</h1>
 
  <div class="contenedor bot">
-    <button type="button" class="boton-verde">
-        <a href="{% url 'crear' %}">Nuevo Producto</a>
+    <button type="button" class="boton-verde ">
+        <a  href="{% url 'crear' %}">Nuevo Producto</a>
     </button>
 </div>
 
@@ -41,13 +41,13 @@
                     <td>{{ p.id_producto }}</td>
                     <td>
                         {% if p.imagen %}
-                            <img class="" src="{{ p.imagen.url }}" alt="imagen Prducto">
+                            <img class="ven__imagen" src="{{ p.imagen.url }}" alt="imagen Prducto">
                         {% endif %}
                     </td>
                     <td>{{ p.precio }}</td>
                     <td>{{ p.descripcion }}</td>
                     <td>{{ p.id_categoria }}</td>
-                    <td class="agregar"><a href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a></td>
+                    <td class="agregar separar"><a href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a></td>
                     <td class="eliminar"><a href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a></td>
                 </tr>
             {% endfor %}      
