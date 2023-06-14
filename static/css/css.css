@@ -914,21 +914,21 @@ body
     background-image: url(../img/nuestrosproducto.jpg);
     
 }
-.para-caru:hover {
+/* .para-caru:hover {
     transform: scale(1.1);
-}
+} */
 .para-caru2 {
     background-image: url(../img/descuento.jpg);
 }
-.para-caru2:hover {
+/* .para-caru2:hover {
     transform: scale(1.1);
-}
+} */
 .para-caru3 {
     background-image: url(../img/sobre-nosotros.jpg);
 }
-.para-caru3:hover {
+/* .para-caru3:hover {
     transform: scale(1.1);
-}
+} */
 
 /* CARRUSEL DE IMAGEN DE iNDEX */
 

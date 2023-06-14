@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,  reverse
 from paginas.custom_auth import custom_authenticate, custom_login, custom_logout, login_required
-from paginas.models import Categoria, Genero, Producto, Persona
+from paginas.models import Categoria, Genero, Producto, Persona, Carrito
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
@@ -208,6 +208,23 @@ def comprar(request, pk):
     producto = get_object_or_404(Producto, id_producto=pk)
     context = {'producto': producto}
     return render(request, 'paginas/productos/comprar.html', context)
+
+def carrito(request, pk):
+    producto = get_object_or_404(Producto, id_producto=pk)
+    persona = get_object_or_404(Persona, id_persona=pk)
+   
+
+    # persona=request.session['nombre']
+    # producto=request.session['id_producto']
+
+    objProducto=Producto.objects.get(id_producto=producto)
+    objPersona=Persona.objects.get(id_persona=persona)
+    carrito=Carrito(
+        persona=objPersona,
+        id_producto=objProducto)  
+    carrito.save()
+    
+    return render(request, 'paginas/session/index.html')
 
 @login_required
 def verificaCompra(request) :

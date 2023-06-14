@@ -17,7 +17,7 @@
             <li><a itlist="itList_2" href="#"></a></li>
         </ul>
         <ul id="slider">
-            <li class="para-caru" style="  z-index:0; opacity: 1;">
+            <li class="para-caru" style="z-index:0; opacity: 1;">
                 <div class="content_slider" >
                     <div>
                         <h2>Nuestros Productos</h2>
@@ -70,7 +70,7 @@
                       <a class="boton-amarilla boton" href="{% url 'comprar' pk=p.id_producto %}">Comprar Ahora</a>
                        
                         {% if p.id_producto %}
-                        <a class="boton-amarilla2 boton btn-agregar-carrito" href="{{ p.id_producto }}">Añadir al Carrito</a> 
+                        <a class="boton-amarilla2 boton btn-agregar-carrito" href="{% url 'carrito' pk=p.id_producto %}">Añadir al Carrito</a> 
                         {% endif %}
                   </div> 
               </div> <!--Contenido anuncio-->

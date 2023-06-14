@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from paginas.models import Categoria, Genero, Producto, Persona
+from paginas.models import Categoria, Genero, Producto, Persona, Carrito
 # Register your models here.
 
 class personaAdmin(admin.ModelAdmin) :
@@ -23,3 +23,4 @@ admin.site.register(Genero)
 admin.site.register(Persona , personaAdmin)
 admin.site.register(Categoria)
 admin.site.register(Producto, productoAdmin)
+admin.site.register(Carrito)

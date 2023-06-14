@@ -50,4 +50,12 @@ def __str__(self):
 
 
 
+class Carrito(models.Model):
+      id_carrito =       models.AutoField(primary_key=True)
+      id_producto =      models.ForeignKey('Producto',on_delete=models.CASCADE, db_column='idProducto')
+      id_persona =      models.ForeignKey('Persona',on_delete=models.CASCADE, db_column='idPersona')
+
+def __str__(self):
+        return str(self.id_persona)+" "+str(self.id_producto)
+
 
