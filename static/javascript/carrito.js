@@ -1,74 +1,60 @@
-// // Agregar evento de clic a los botones "Añadir al Carrito"
-// var botonesAgregarCarrito = document.getElementsByClassName('btn-agregar-carrito');
-// for (var i = 0; i < botonesAgregarCarrito.length; i++) {
-//   botonesAgregarCarrito[i].addEventListener('click', function() {
-//     var productoId = this.getAttribute('data-producto-id');
-  
-//     // Realizar una petición al servidor para agregar el producto al carrito
-//     agregarProductoAlCarrito(productoId);
-//   });
-// }
 
-// // Función para agregar el producto al carrito
-// function agregarProductoAlCarrito(productoId) {
-//   // Realizar una petición al servidor para agregar el producto al carrito
-//   // Puedes usar AJAX, fetch o cualquier otro método de tu elección
-//   // Aquí tienes un ejemplo utilizando fetch:
+let lista = [];
+let valortotal = 0;
 
-//   fetch('/producto/', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ productoId: productoId })
-//   })
-//   .then(function(response) {
-//     if (response.ok) {
-//       // El producto se agregó al carrito correctamente
-//       actualizarCantidadCarrito();
-//     } else {
-//       // Hubo un error al agregar el producto al carrito
-//       console.error('Error al agregar producto al carrito');
-//     }
-//   })
-//   .catch(function(error) {
-//     console.error('Error al realizar la solicitud', error);
-//   });
-// }
+// Funciones para almacenar y obtener los datos del carrito desde el almacenamiento local
+function guardarAlmacenamientoLocal(llave, valor_a_guardar) {
+  localStorage.setItem(llave, JSON.stringify(valor_a_guardar));
+}
 
-// // Función para obtener la cantidad actual en el carrito
-// function obtenerCantidadCarrito() {
-//   // Realizar una petición al servidor para obtener la cantidad del carrito
-//   // Puedes usar AJAX, fetch o cualquier otro método de tu elección
-//   // Aquí tienes un ejemplo utilizando fetch:
+function obtenerAlmacenamientoLocal(llave) {
+  const datos = JSON.parse(localStorage.getItem(llave));
+  return datos;
+}
 
-//   return fetch('/obtener-cantidad-carrito')
-//     .then(function(response) {
-//       if (response.ok) {
-//         return response.json();
-//       } else {
-//         throw new Error('Error al obtener la cantidad del carrito');
-//       }
-//     })
-//     .then(function(data) {
-//       return data.cantidad;
-//     })
-//     .catch(function(error) {
-//       console.error('Error al obtener la cantidad del carrito', error);
-//       return 0; // Retorna 0 en caso de error
-//     });
-// }
+// Obtener la lista de productos del almacenamiento local (si existe)
+lista = obtenerAlmacenamientoLocal('productos') || [];
 
-// // Función para actualizar la cantidad en el carrito en la interfaz
-// function actualizarCantidadCarrito() {
-//   var cantidadCarritoElemento = document.getElementById('cantidad-carrito');
-//   if (cantidadCarritoElemento) {
-//     obtenerCantidadCarrito()
-//       .then(function(cantidad) {
-//         cantidadCarritoElemento.textContent = cantidad;
-//       });
-//   }
-// }
+// Variables que traemos de nuestro HTML
+const carritoEnlace = document.querySelector('.carrito-enlace');
+const badge = document.querySelector('.badge');
 
-// // Actualizar la cantidad en el carrito al cargar la página
-// actualizarCantidadCarrito();
+// Actualizar el número en el badge del carrito
+function actualizarBadge() {
+  if (lista.length > 0) {
+    badge.textContent = lista.length;
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// Función para agregar un producto al carrito
+function agregarAlCarrito(producto) {
+  lista.push(producto);
+  guardarAlmacenamientoLocal('productos', lista);
+  actualizarBadge();
+}
+
+// Evento clic en el enlace del carrito
+carritoEnlace.addEventListener('click', function(event) {
+  event.preventDefault();
+  // Aquí puedes realizar alguna acción adicional al hacer clic en el enlace del carrito
+  // Por ejemplo, mostrar el contenido del carrito en un modal o redirigir a la página del carrito
+});
+
+// Ejemplo de uso de la función agregarAlCarrito:
+const productos = [
+    {% for p in productos %}
+    {
+      titulo: "{{ p.titulo }}",
+      precio: {{ p.precio }},
+      descripcion: "{{ p.descripcion }}",
+      id_categoria: "{{ p.id_categoria }}"
+    },
+    {% empty %}
+    // No hay productos en el carrito
+    {% endfor %}
+  ];
+
+agregarAlCarrito(producto);

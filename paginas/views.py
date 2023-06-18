@@ -106,7 +106,10 @@ def signup(request):
 
 
 def producto(request):
-    context = {}
+    persona = Persona.id_persona
+    productos = Carrito.objects.all()
+    context = { 'persona': persona,
+               'productos': productos}
     return render(request, 'paginas/productos/producto.html', context)
 
 
@@ -152,6 +155,18 @@ def eliminar(request,pk):
         productos=Producto.objects.all()
         context ={'productos' : productos, 'mensaje' : mensaje,}
         return render(request, 'paginas/trabajadores/vendedor.html', context)
+    
+def eliminarCarrito(request, pk):
+    try:
+        carritos = Carrito.objects.get(id_producto=pk)
+        carritos.delete()
+        productos=Producto.objects.all()
+        context ={'productos' : productos,}
+        return render(request, 'paginas/compra/carrito.html', context)
+    except:
+        productos=Producto.objects.all()
+        context ={'productos' : productos, }
+        return render(request, 'paginas/compra/carrito.html', context)
 
 
 
@@ -209,22 +224,21 @@ def comprar(request, pk):
     context = {'producto': producto}
     return render(request, 'paginas/productos/comprar.html', context)
 
-def carrito(request, pk):
-    producto = get_object_or_404(Producto, id_producto=pk)
-    persona = get_object_or_404(Persona, id_persona=pk)
-   
-
-    # persona=request.session['nombre']
-    # producto=request.session['id_producto']
-
-    objProducto=Producto.objects.get(id_producto=producto)
-    objPersona=Persona.objects.get(id_persona=persona)
-    carrito=Carrito(
-        persona=objPersona,
-        id_producto=objProducto)  
+def carrito(request, producto_pk):
+    producto = Producto.objects.get(id_producto=producto_pk)
+    carrito = Carrito(
+        id_producto=producto,
+        precio=producto.precio,
+        nombre_producto=producto.titulo,
+        descripcion_producto=producto.descripcion
+    )
     carrito.save()
-    
-    return render(request, 'paginas/session/index.html')
+    productos = Carrito.objects.all()
+    context = {"productos": productos}
+    return render(request, 'paginas/productos/producto.html', context)
+
+
+
 
 @login_required
 def verificaCompra(request) :

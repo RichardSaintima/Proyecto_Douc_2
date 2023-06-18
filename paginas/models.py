@@ -28,6 +28,8 @@ class Persona(models.Model):
 
     def __str__(self):
         return f'{self.nombre} {self.apellido} {self.is_vendedor}'
+    
+    
 
 
 class Categoria(models.Model):
@@ -45,17 +47,20 @@ class Producto(models.Model):
     descripcion =       models.CharField(max_length=210)
     id_categoria =      models.ForeignKey('Categoria',on_delete=models.CASCADE, db_column='idCategoria')
     
-def __str__(self):
+    def __str__(self):
         return str(self.titulo)+" "+str(self.id_producto)
 
 
 
 class Carrito(models.Model):
-      id_carrito =       models.AutoField(primary_key=True)
-      id_producto =      models.ForeignKey('Producto',on_delete=models.CASCADE, db_column='idProducto')
-      id_persona =      models.ForeignKey('Persona',on_delete=models.CASCADE, db_column='idPersona')
+    id_carrito = models.AutoField(primary_key=True)
+    id_producto = models.ForeignKey('Producto', on_delete=models.CASCADE, db_column='idProducto')
+    precio = models.DecimalField(max_digits=10, decimal_places=2, default=False)
+    nombre_producto = models.CharField(max_length=100 , default=False)
+    descripcion_producto = models.TextField(default=False)
 
-def __str__(self):
-        return str(self.id_persona)+" "+str(self.id_producto)
+    def __str__(self):
+        return f'{self.id_producto}'
+
 
 

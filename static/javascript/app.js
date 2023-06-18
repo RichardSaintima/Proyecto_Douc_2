@@ -23,7 +23,6 @@ function navegacionResponsive(){
         // O navegacion.classList.toggle("mostrar");
 }
 
-
 // Funcion de carrusel
 
 if(document.querySelector('#container-slider')){

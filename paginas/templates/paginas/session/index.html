@@ -61,7 +61,7 @@
                 <h3 class="nombre_pro">{{ p.titulo|title }}</h3>
                 <div class="contenido-anuncio">
                     {% if p.imagen %}
-                        <img class="producto__imagen" src="{{ p.imagen.url }}" alt="imagen Prducto">
+                        <img class="producto__imagen" src="{{ p.imagen.url }}" alt="imagen Producto">
                     {% endif %}
                     <h5 class="marca">{{ p.id_categoria }}</h5>        
                     <p class="descripcion">{{ p.descripcion }}</p>
@@ -69,9 +69,10 @@
                     <div class="seleccion">
                       <a class="boton-amarilla boton" href="{% url 'comprar' pk=p.id_producto %}">Comprar Ahora</a>
                        
-                        {% if p.id_producto %}
-                        <a class="boton-amarilla2 boton btn-agregar-carrito" href="{% url 'carrito' pk=p.id_producto %}">Añadir al Carrito</a> 
-                        {% endif %}
+                      {% if p.id_producto %}
+                      <a class="boton-amarilla2 boton btn-agregar-carrito" href="{% url 'carrito' producto_pk=p.id_producto %}">Añadir al Carrito</a>
+                      {% endif %}
+                      
                   </div> 
               </div> <!--Contenido anuncio-->
           </div><!--Anuncio-->
@@ -79,7 +80,6 @@
   </div> 
     {% endfor %} 
 </div>
-
 
 {% else %}
 <p style="text-align: center; font-weight: 900; font-size: 7rem;">NO Hay Producto Disponible</p>
