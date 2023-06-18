@@ -326,6 +326,11 @@ body
     margin-top: 0;
     color: purple;
 }
+.persona-nombre {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+}
 
 /* Iniciar Session */
 .iniciar-session{
@@ -569,6 +574,8 @@ body
     
     .seleccion a {
     margin: 1rem;
+    text-decoration: none;
+
     
 }
     
@@ -576,7 +583,7 @@ body
 }
 .seleccion a {
     margin: 1rem;
-    
+    text-decoration: none;
 }
 .seleccion {
     display: grid;
@@ -1026,48 +1033,17 @@ body
 }
 .contenedor th {
     background-color: #ff53e8;
+    border-bottom: solid 1px #000000;
 
 }
 .contenedor td {
     font-weight: 700;
     font-size: 1.2rem;
     text-decoration: none;
-    border: 2px solid #ddd;
+    border-bottom: solid 1px #000000;
 }
 .contenedor td a{
     text-decoration: none;    
-}
-
-@media (min-width: 380px ){
-    .agregar {
-    background-color: #f6d844;
-    color: white;
-        
-    }
-    .agregar a {
-    color: white;
-        
-    }
-
-    .agregar:hover {
-    background-color: #fded9a;
-    color: white;
-    cursor: pointer;
-    }
-    .eliminar {
-    background-color: #9c0909;
-    color: white;
-        
-    }
-    .eliminar a {
-    color: white; 
-    }
-    .eliminar:hover {
-    background-color: #ea7474;
-    color: white;
-    cursor: pointer;
-        
-    }    
 }
 
 .producto__imagen {
@@ -1095,6 +1071,21 @@ table {
     background-color: #f2f2f2;
   }
   
+  .separacion {
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .separacion p {
+    font-size: 1rem;
+    padding: auto;
+    margin: auto;
+  }
+  .separacion a {
+    font-size: 1.5rem;
+    padding: auto;
+    margin: auto;
+  }
   
   .ven__imagen {
     width: 100px;
@@ -1108,36 +1099,35 @@ table {
 
   }
 
-@media (min-width: 768px ){
 
-    .agregar {
-    background-color: #f6d844;
-    color: white;
-        
-    }
-    .agregar a {
-    color: white;
-        
-    }
-    .agregar:hover {
-    background-color: #fded9a;
-    color: white;
-        cursor: pointer;
-    }
-    .eliminar {
-    background-color: #9c0909;
-    color: white;
-        
-    }
-    .eliminar a {
-    color: white; 
-    }
-    .eliminar:hover {
-    background-color: #ea7474;
-    color: white;
-    cursor: pointer;
-        
-    }    
+.agregar {
+background-color: #f6d844;
+color: white;
+    
 }
+.agregar a {
+color: white;
+    
+}
+.agregar:hover {
+background-color: #fded9a;
+color: white;
+    cursor: pointer;
+}
+.eliminar {
+background-color: #ef2222;
+color: white;
+    
+}
+.eliminar a {
+color: white; 
+}
+.eliminar:hover {
+background-color: #ea7474;
+color: white;
+cursor: pointer;
+    
+}    
+
 
 /* VENDEDORES */

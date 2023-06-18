@@ -7,19 +7,35 @@ from django.contrib import messages
 
 
 # Create your views here.
-def index(request) : 
+def index(request) :
+    if 'id_persona' in request.session:
+        persona = Persona.objects.get(id_persona=request.session['id_persona']) 
+        productos = Producto.objects.all()
+        context ={"productos" : productos,
+                  "persona": persona}
+        return render(request, 'paginas/session/index.html', context)
     productos = Producto.objects.all()
-    context ={"productos" : productos}
-    return render(request, 'paginas/session/index.html', context)
+    context ={"productos" : productos,}
+    return render(request, 'paginas/session/index.html',context)
 
 
-def nosotros(request) :
-    context ={}
-    return render(request, 'paginas/session/nosotros.html', context)
+def nosotros(request):
+    if 'id_persona' in request.session:
+        persona = Persona.objects.get(id_persona=request.session['id_persona'])
+        if not persona.is_vendedor:
+            context = {"persona": persona}
+            return render(request, 'paginas/session/nosotros.html', context)
+    
+    return render(request, 'paginas/session/nosotros.html')
+
 
 def contacto(request) :
-    context = {}
-    return render(request, 'paginas/contactos/contacto.html', context)
+    if 'id_persona' in request.session:
+        persona = Persona.objects.get(id_persona=request.session['id_persona'])
+        if not persona.is_vendedor:
+            context = {"persona": persona}
+            return render(request, 'paginas/contactos/contacto.html', context)
+    return render(request, 'paginas/contactos/contacto.html')
 
 
 def login_v(request):
@@ -106,10 +122,15 @@ def signup(request):
 
 
 def producto(request):
-    persona = Persona.id_persona
-    productos = Carrito.objects.all()
-    context = { 'persona': persona,
+    if 'id_persona' in request.session:
+        persona = Persona.objects.get(id_persona=request.session['id_persona'])
+        if not persona.is_vendedor:
+            productos = Carrito.objects.all()
+            context = { 'persona': persona,
                'productos': productos}
+            return render(request, 'paginas/productos/producto.html', context)
+    productos = Carrito.objects.all()
+    context = { 'productos': productos}
     return render(request, 'paginas/productos/producto.html', context)
 
 
@@ -287,8 +308,14 @@ def productoUpdate(request, pk):
         return render(request, 'paginas/productos/producto_edit.html', context)
 
 
-
 def comprar(request, pk):
+    if 'id_persona' in request.session:
+        persona = Persona.objects.get(id_persona=request.session['id_persona'])
+        if not persona.is_vendedor:
+            producto = get_object_or_404(Producto, id_producto=pk)
+            context = { 'persona': persona,
+                'producto': producto}
+            return render(request, 'paginas/productos/comprar.html', context)
     producto = get_object_or_404(Producto, id_producto=pk)
     context = {'producto': producto}
     return render(request, 'paginas/productos/comprar.html', context)
@@ -320,17 +347,25 @@ def vendedor(request):
     persona = Persona.objects.get(id_persona=request.session['id_persona'])
     if persona.is_vendedor:
         productos = Producto.objects.all()
-        context = {"productos": productos}
+        context = {"productos": productos, "persona": persona}
         return render(request, 'paginas/trabajadores/vendedor.html', context)
     else:
         return redirect('/')
-    
 
+    
+@login_required
 def vendedorIndex(request):
-    productos = Producto.objects.all()
-    context = {"productos": productos}
-    return render(request, 'paginas/trabajadores/index.html', context)
+    persona = Persona.objects.get(id_persona=request.session['id_persona'])
+    if persona.is_vendedor:
+        productos = Producto.objects.all()
+        context = {"productos": productos, "persona": persona}
+        return render(request, 'paginas/trabajadores/index.html', context)
+    return render(request, 'paginas/trabajadores/index.html')
 
 def sorry(request) :
-    context ={}
-    return render(request, 'extras/sorry.html', context)
+    if 'id_persona' in request.session:
+        persona = Persona.objects.get(id_persona=request.session['id_persona'])
+        if not persona.is_vendedor:
+            context = {"persona": persona}
+            return render(request, 'extras/sorry.html', context)
+    return render(request, 'extras/sorry.html')

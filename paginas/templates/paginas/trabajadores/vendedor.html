@@ -34,8 +34,14 @@
             <th>Precio</th>
             <th>Descripcion</th>
             <th>Marca</th>
-            <th>Eliminar</th>
-            <th>Actualizar</th>
+            <th>
+                <div class="separacion">
+                    <p>Eliminar</p>  
+                    <p>Actualizar</p> 
+                </div>
+
+            </th>
+            
             {% for p in productos %}  
                 <tr>
                     <td>{{ p.id_producto }}</td>
@@ -47,8 +53,14 @@
                     <td>{{ p.precio }}</td>
                     <td>{{ p.descripcion }}</td>
                     <td>{{ p.id_categoria }}</td>
-                    <td class=" eliminar boton1 "><a href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a></td>
-                    <td class="agregar boton1"><a href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a></td>
+                    <td >
+                        <div class="separacion">
+                            <a href="{% url 'eliminar' pk=p.id_producto %}" class=" eliminar boton1 ">Eliminar</a>
+                            <a href="{% url 'actualizar' pk=p.id_producto%}" class="agregar boton1">Actualizar</a> 
+                        </div>
+
+                    </td>
+                    
                 </tr>
             {% empty %}
                 <p>No hay productos disponibles.</p>
