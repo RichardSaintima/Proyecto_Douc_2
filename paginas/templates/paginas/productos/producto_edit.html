@@ -11,7 +11,17 @@
       {% if mensaje %}
           {{mensaje}}
       {% endif %}
-  </div>
+    </div>
+
+  {% if messages %}
+  {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} mensaje  ">
+          {{ message }}
+      </div>
+  {% endfor %}
+  {% endif %}
+
+
     <div>
         <div class="regi">
           <div class="text-header">Actualizar</div>
@@ -45,4 +55,12 @@
       </div>
 
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+    $("#idMensajes").delay(5000).fadeOut("slow");
+
+    });
+</script>
 {%endblock%}

@@ -19,8 +19,8 @@
                 <td>{{ p.nombre_producto }}</td>
                 <td>{{ p.precio }}</td>
                 <td>{{ p.descripcion_producto }}</td>
-                <td class="agregar separar">
-                  <a href="{% url 'eliminarCarrito' pk=p.id_producto %}">Eliminar</a>
+                <td class="eliminar separar">
+                  <a href="{% url 'eliminarCarrito' carrito_pk=p.id_carrito %}">Eliminar</a>
               </td>
               
             </tr>

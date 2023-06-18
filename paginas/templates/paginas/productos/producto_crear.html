@@ -9,7 +9,13 @@
   {% endif %}
 </div>
 
-
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mensaje  ">
+        {{ message }}
+    </div>
+{% endfor %}
+{% endif %}
  <section class="contenedor seccion contenido-centrado" ><div class="error" id="error"></div>
     <a href="/vendedor" class="volver-producto">Volver</a>
     <div>

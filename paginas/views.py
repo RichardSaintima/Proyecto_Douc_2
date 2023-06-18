@@ -114,29 +114,58 @@ def producto(request):
 
 
 
-def crear(request) :
+def crear(request):
     if request.method == "GET":
         categorias = Categoria.objects.all()
-        context ={'categorias' : categorias}
+        context = {'categorias': categorias}
         return render(request, 'paginas/productos/producto_crear.html', context)
     else:
-        print(request.POST)
-        titulo=request.POST['titulo']
-        precio=request.POST['precio']
-        imagen = request.FILES['imagen']
-        descripcion=request.POST['descripcion']
-        categoria=request.POST['categoria']
+        titulo = request.POST.get('titulo')
+        precio = request.POST.get('precio')
+        imagen = request.FILES.get('imagen')
+        descripcion = request.POST.get('descripcion')
+        categoria = request.POST.get('categoria')
 
-        objCategoria=Categoria.objects.get(id_categoria=categoria)
-        obj=Producto.objects.create(
+        if not titulo:
+            messages.error(request, 'El campo de título es obligatorio.')
+            categorias = Categoria.objects.all()
+            context = {'categorias': categorias}
+            return render(request, 'paginas/productos/producto_crear.html', context)
+        if not precio:
+            messages.error(request, 'El campo de precio es obligatorio.')
+            messages.error(request, 'El campo de título es obligatorio.')
+            categorias = Categoria.objects.all()
+            context = {'categorias': categorias}
+            return render(request, 'paginas/productos/producto_crear.html', context)
+        if not imagen:
+            messages.error(request, 'Debe seleccionar una imagen.')
+            messages.error(request, 'El campo de título es obligatorio.')
+            categorias = Categoria.objects.all()
+            context = {'categorias': categorias}
+            return render(request, 'paginas/productos/producto_crear.html', context)
+        if not descripcion:
+            messages.error(request, 'El campo de descripción es obligatorio.')
+            return redirect('crear')
+        if not categoria:
+            messages.error(request, 'Debe seleccionar una categoría.')
+            messages.error(request, 'El campo de título es obligatorio.')
+            categorias = Categoria.objects.all()
+            context = {'categorias': categorias}
+            return render(request, 'paginas/productos/producto_crear.html', context)
+
+        objCategoria = Categoria.objects.get(id_categoria=categoria)
+
+        obj = Producto.objects.create(
             titulo=titulo,
             precio=precio,
             imagen=imagen,
             descripcion=descripcion,
-            id_categoria=objCategoria)    
+            id_categoria=objCategoria
+        )
         obj.save()
-        messages.success(request, 'Agregado Correctamente.')
-        return redirect( '/vendedor/')
+
+        messages.success(request, 'Producto agregado correctamente.')
+        return redirect('/vendedor/')
 
 
 
@@ -156,17 +185,10 @@ def eliminar(request,pk):
         context ={'productos' : productos, 'mensaje' : mensaje,}
         return render(request, 'paginas/trabajadores/vendedor.html', context)
     
-def eliminarCarrito(request, pk):
-    try:
-        carritos = Carrito.objects.get(id_producto=pk)
-        carritos.delete()
-        productos=Producto.objects.all()
-        context ={'productos' : productos,}
-        return render(request, 'paginas/compra/carrito.html', context)
-    except:
-        productos=Producto.objects.all()
-        context ={'productos' : productos, }
-        return render(request, 'paginas/compra/carrito.html', context)
+def eliminarCarrito(request, carrito_pk):
+    carrito = get_object_or_404(Carrito, id_carrito=carrito_pk)
+    carrito.delete()
+    return redirect('producto') 
 
 
 
@@ -189,24 +211,71 @@ def actualizar(request,pk):
 
 def productoUpdate(request, pk):
     if request.method == "POST":
-        titulo = request.POST['titulo']
-        precio = request.POST['precio']
-        imagen = request.FILES['imagen']
-        descripcion = request.POST['descripcion']
-        categoria = request.POST['categoria']
+        titulo = request.POST.get('titulo')
+        precio = request.POST.get('precio')
+        imagen = request.FILES.get('imagen')
+        descripcion = request.POST.get('descripcion')
+        categoria = request.POST.get('categoria')
+
+        # Validación de campos
+        if not titulo:
+            messages.error(request, 'El campo de título es obligatorio.')
+            producto = Producto.objects.get(id_producto=pk)
+            categorias = Categoria.objects.all()
+            context = {
+                'producto': producto,
+                'categorias': categorias
+            }
+            return render(request, 'paginas/productos/producto_edit.html', context)
+        if not precio:
+            messages.error(request, 'El campo de precio es obligatorio.')
+            producto = Producto.objects.get(id_producto=pk)
+            categorias = Categoria.objects.all()
+            context = {
+                'producto': producto,
+                'categorias': categorias
+            }
+            return render(request, 'paginas/productos/producto_edit.html', context)
+        if not imagen:
+            messages.error(request, 'Debe seleccionar una imagen.')
+            producto = Producto.objects.get(id_producto=pk)
+            categorias = Categoria.objects.all()
+            context = {
+                'producto': producto,
+                'categorias': categorias
+            }
+            return render(request, 'paginas/productos/producto_edit.html', context)
+        if not descripcion:
+            messages.error(request, 'El campo de descripción es obligatorio.')
+            producto = Producto.objects.get(id_producto=pk)
+            categorias = Categoria.objects.all()
+            context = {
+                'producto': producto,
+                'categorias': categorias
+            }
+            return render(request, 'paginas/productos/producto_edit.html', context)
+        if not categoria:
+            messages.error(request, 'Debe seleccionar una categoría.')
+            producto = Producto.objects.get(id_producto=pk)
+            categorias = Categoria.objects.all()
+            context = {
+                'producto': producto,
+                'categorias': categorias
+            }
+            return render(request, 'paginas/productos/producto_edit.html', context)
 
         objCategoria = Categoria.objects.get(id_categoria=categoria)
 
         producto = Producto.objects.get(id_producto=pk)
         producto.titulo = titulo
         producto.precio = precio
-        producto.imagen = imagen
+        if imagen:
+            producto.imagen = imagen
         producto.descripcion = descripcion
         producto.id_categoria = objCategoria
         producto.save()
 
-        categorias = Categoria.objects.all()
-        messages.success(request,"Producto Actualizado Correctamente")
+        messages.success(request, 'Producto actualizado correctamente.')
         return redirect('vendedor')
     else:
         producto = Producto.objects.get(id_producto=pk)
@@ -235,7 +304,7 @@ def carrito(request, producto_pk):
     carrito.save()
     productos = Carrito.objects.all()
     context = {"productos": productos}
-    return render(request, 'paginas/productos/producto.html', context)
+    return redirect( 'producto')
 
 
 

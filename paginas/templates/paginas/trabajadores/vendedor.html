@@ -8,7 +8,7 @@
  <h1 style="text-align: center;">Editar, Eliminar o Agrega Productos</h1>
 
  <div class="contenedor bot">
-    <button type="button" class="boton-verde ">
+    <button type="button" class="boton-verde boton1">
         <a  href="{% url 'crear' %}">Nuevo Producto</a>
     </button>
 </div>
@@ -47,14 +47,35 @@
                     <td>{{ p.precio }}</td>
                     <td>{{ p.descripcion }}</td>
                     <td>{{ p.id_categoria }}</td>
-                    <td class="agregar separar"><a href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a></td>
-                    <td class="eliminar"><a href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a></td>
+                    <td class=" eliminar boton1 "><a href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a></td>
+                    <td class="agregar boton1"><a href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a></td>
                 </tr>
-            {% endfor %}      
+            {% empty %}
+                <p>No hay productos disponibles.</p>
+            {% endfor %}     
 
         {% endif %}
     </table>
 
+</div>
+
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+            <span class="current-page">{{ num }}</span>
+        {% else %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

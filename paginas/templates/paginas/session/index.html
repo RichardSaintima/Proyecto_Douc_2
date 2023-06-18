@@ -81,9 +81,28 @@
     {% endfor %} 
 </div>
 
+<div class="pagination">
+  {% if productos.has_previous %}
+    <a href="?pagina={{ productos.previous_page_number }}">Anterior</a>
+  {% endif %}
+
+  {% for num in productos.paginator.page_range %}
+    {% if num == productos.number %}
+      <span class="current-page">{{ num }}</span>
+    {% else %}
+      <a href="?pagina={{ num }}">{{ num }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if productos.has_next %}
+    <a href="?pagina={{ productos.next_page_number }}">Siguiente</a>
+  {% endif %}
+</div>
+
 {% else %}
 <p style="text-align: center; font-weight: 900; font-size: 7rem;">NO Hay Producto Disponible</p>
 {% endif %}
+
 
 <!-- {% load static %}
 <script src="{% static 'javascript/carrito.js' %}"></script> -->

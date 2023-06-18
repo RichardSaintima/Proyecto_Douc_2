@@ -24,8 +24,8 @@
                       <p class="descripcion">{{ p.descripcion }}</p>
                       <p class="precio">${{ p.precio|intcomma }}</p> 
                       <div class="seleccion">
-                        <a class="agregar boton1" href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a>
-                        <a class="eliminar boton1" href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a>
+                        <a class="eliminar boton1" href="{% url 'eliminar' pk=p.id_producto %}">Eliminar</a>
+                        <a class=" agregar boton1" href="{% url 'actualizar' pk=p.id_producto%}">Actualizar</a>
                     </div> 
                 </div> <!--Contenido anuncio-->
             </div><!--Anuncio-->
