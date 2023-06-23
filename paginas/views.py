@@ -25,7 +25,6 @@ def nosotros(request):
         if not persona.is_vendedor:
             context = {"persona": persona}
             return render(request, 'paginas/session/nosotros.html', context)
-    
     return render(request, 'paginas/session/nosotros.html')
 
 
